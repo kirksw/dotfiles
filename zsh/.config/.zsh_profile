@@ -1,0 +1,7 @@
+# env-vars
+export XDG_CONFIG_HOME=$HOME/.config
+export DOTFILE=$HOME/.dotfiles
+
+# aliases
+alias vim=nvim
+alias python=python3
