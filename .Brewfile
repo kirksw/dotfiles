@@ -4,7 +4,6 @@
 # third-party repositories 
 tap 'homebrew/cask'
 
-
 # cli utitlities
 brew 'ssh-copy-id'  # installs ssh key as an authorized key
 brew 'fasd'     # Fast directory switcher
@@ -23,21 +22,14 @@ brew 'tree'     # recursively list contents of a directory in tree like structur
 brew 'navi'     # terminal cheatsheets
 brew 'tmux'     # terminal multiplexer
 brew 'neovim'   # terminal text editor
-brew 'pipx'     # ??
-brew 'git'      # ??
-brew 'zsh'      # ??
-## maybe remove these below
-brew 'shellcheck' # ??
-brew 'yamllint'   # ??
+brew 'pipx'     # for installing cli tools in self-contained environment
+brew 'git'      # should already be installed
+brew 'zsh'      # newer version of zsh
 
 # applications
 cask 'wezterm'          # rust based gpu accelerated terminal
 cask 'rectangle'        # macos window management tools
 cask 'scroll-reverser'  # mouse management tools
 cask 'cyberduck'        # ?
-## maybe remove these below
-cask 'qlstephen'        # ?  
-cask 'apparency'        # ?
-cask 'syntax-highlight' # ?
 
 # environments - using rtx (asdf clone) instead

@@ -9,22 +9,24 @@
 
 ## Getting started
 
-1. Enable hidden files in Finder [optional]
+1. Clone repo w/ submodules:
 
-`defaults write -g AppleShowAllFiles -bool true`
+`git clone --recurse-submodules https://github.com/kirksw/dotfiles ~/.dotfiles`
 
-2. Clone repo w/ submodules:
-   `git clone --recurse-submodules https://github.com/kirksw/dotfiles ~/.dotfiles`
+2. Install config
 
-3. Install dependencies
-
-`~/.dotfiles/install-deps.sh`
-
-4. Install config
-
-`~/.dotfiles/install-all.sh`
+`~/.dotfiles/install.sh`
 
 ## Information
+
+### Linux
+
+For arch linux this repository includes setup for the desktop environment, consisting of:
+
+- picom (window compositor forked from compton)
+- polybar (lightweight status bar)
+- rofi (window switcher - dmenu replacement)
+- dunst (lightweight notification daemon)
 
 ### ZSH
 
@@ -33,48 +35,6 @@ The Z shell (Zsh) is a Unix shell that can be used as an interactive login shell
 #### Oh-my-zsh
 
 Oh My Zsh is a delightful, open source, community-driven framework for managing your Zsh configuration. It comes bundled with thousands of helpful functions, helpers, plugins, themes, and a few things that make you shout..."Oh My ZSH!"
-
-### Python
-
-Python can be tricky to manage, given the various versions, toolings and dependencies. The current thinking is that rtx should manage python versions, with poetry for managing project dependencies, and finally pipx for installing tooling such the azure-cli in isolated environments.
-
-#### Poetry
-
-> Poetry is a tool for dependency management and packaging in Python. It allows you to declare the libraries your project depends on and it will manage (install/update) them for you.
-
-installation:
-
-```bash
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-```
-
-usage:
-
-```bash
-# creating new projects
-poetry new poetry-demo
-
-# intializing existing projects
-poetry init
-
-# run command under poetry environment
-poetry run python main.py
-
-# install dependencies
-poetry install
-
-# add dependency
-poetry add pydantic
-
-# add development dependency
-poetry add -D black
-
-# building
-poetry build
-
-# publishing (to private repo)
-poetry publish -r my-repository
-```
 
 #### pipx
 
@@ -93,25 +53,6 @@ pipx list
 pycowsay moooo
 ```
 
-### GO
+### [rtx] asdf
 
 todo :)
-
-### Rust
-
-todo :)
-
-### Nodejs
-
-#### nvm
-
-usage:
-
-```bash
-# install nodejs version
-nvm install 8.0
-# use nodejs version
-nvm use 8.0
-```
-
-#### npm
