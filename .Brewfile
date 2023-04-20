@@ -26,6 +26,7 @@ brew 'neovim'   # terminal text editor
 brew 'pipx'     # ??
 brew 'git'      # ??
 brew 'zsh'      # ??
+brew 'lazygit'  # ??
 ## maybe remove these below
 brew 'shellcheck' # ??
 brew 'yamllint'   # ??

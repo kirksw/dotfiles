@@ -1,13 +1,13 @@
 # TODO: rewrite to support arch and macos
 
 if [[ $OSTYPE == 'darwin'* ]]; then
-    echo 'Installing dependencies for macOS'
-    brew bundle --file=./.Brewfile
+	echo 'Installing dependencies for macOS'
+	brew bundle --file=./.Brewfile
 elif [ -f "/etc/arch-release" ]; then
-    echo 'Installing dependencies for Arch'
+	echo 'Installing dependencies for Arch'
 else
-    echo 'Sorry but your current OS is unsupported!'
-    exit 
+	echo 'Sorry but your current OS is unsupported!'
+	exit
 fi
 
 # zsh
@@ -17,11 +17,3 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 # python
 ## poetry
 pipx install poetry
-
-# scala/java
-## sdkman
-curl -s "https://get.sdkman.io" | bash
-
-# javascript
-## use rtx
-# TODO: setup default environments for all of above
