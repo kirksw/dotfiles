@@ -22,9 +22,13 @@ brew 'tree'     # recursively list contents of a directory in tree like structur
 brew 'navi'     # terminal cheatsheets
 brew 'tmux'     # terminal multiplexer
 brew 'neovim'   # terminal text editor
-brew 'pipx'     # for installing cli tools in self-contained environment
-brew 'git'      # should already be installed
-brew 'zsh'      # newer version of zsh
+brew 'pipx'     # ??
+brew 'git'      # ??
+brew 'zsh'      # ??
+brew 'lazygit'  # ??
+## maybe remove these below
+brew 'shellcheck' # ??
+brew 'yamllint'   # ??
 
 # applications
 cask 'wezterm'          # rust based gpu accelerated terminal

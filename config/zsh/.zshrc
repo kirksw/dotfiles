@@ -13,6 +13,24 @@ source $ZSH/oh-my-zsh.sh
 # aliases
 source $HOME/.config/.zsh_profile
 
+# nvim configs
+alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
+alias nvim-chad="NVIM_APPNAME=NvChad nvim"
+alias nvim-astro="NVIM_APPNAME=AstroVim nvim"
+
+function nvims() {
+  items=("default" "AstroVim" "LazyVim" "NvChad")
+  config=$(printf "%s\n" "${items[@]}" | fzf --prompt="Neovim Config >> " --height=~50% --layout=reverse --border --exit-0)
+
+  if [[ -z $config ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $config == "default" ]]; then
+    config = ""
+  fi
+  NVIM_APPNAME=$config nvim $@
+}
+
 # oh-my-zsh plugins
 plugins=(
     git
@@ -39,3 +57,13 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # done this way to stop it re-adding
 eval "$($HOME/.local/share/rtx/bin/rtx activate zsh)"
+
+# Created by `pipx` on 2023-03-01 08:29:34
+export PATH="$PATH:/Users/dkKirSwe/.local/bin"
+
+# Change the current directory for a tmux session, which determines
+# the starting dir for new windows/panes:
+function tmux-cwd {
+    tmux command-prompt -I $PWD -P "New session dir:" "attach -c %1"
+}
+
