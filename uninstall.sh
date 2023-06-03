@@ -1,8 +1,8 @@
 #!/bin/zsh
-pushd $DOTFILES
-for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
+
+echo 'Unstowing common dirs'
+for PACKAGE in git nvim ranger rtx tmux wezterm zsh
 do
-    echo "Removing $folder"
-    stow -D $folder
+    stow -D -v -d config -t $HOME $PACKAGE
 done
-popd
+

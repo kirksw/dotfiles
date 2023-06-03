@@ -2,32 +2,37 @@
 # Pre
 ## brew or pacman install
 if [[ $OSTYPE == 'darwin'* ]]; then
-    echo 'Installing dependencies for macOS'
-    brew bundle --file=./.Brewfile
+	echo 'Installing dependencies for macOS'
+	brew bundle --file=./.Brewfile
 elif [ -f "/etc/arch-release" ]; then
-    echo 'Installing dependencies for Arch'
-    sudo pacman -Syyu
-    # base packages
-    sudo pacman -S acpi alsa-utils base-devel curl git pipewire pipewire-alsa xorg xorg-xinit xclip rofi scrot slop wezterm zsh tmux neovim picom polybar dunst i3-gaps zathura zathura-pdf-mupdf ranger ripgrep bat tree ncdu iftop htop ctags lesspipe pipx fzf
+	echo 'Installing dependencies for Arch'
+	sudo pacman -Syyu
+	# base packages
+	sudo pacman -S acpi alsa-utils base-devel curl git pipewire pipewire-alsa xorg xorg-xinit xclip rofi scrot slop wezterm zsh tmux neovim picom polybar dunst i3-gaps zathura zathura-pdf-mupdf ranger ripgrep bat tree ncdu iftop htop ctags lesspipe pipx fzf
 else
-    echo 'Sorry but your current OS is unsupported!'
-    exit 
+	echo 'Sorry but your current OS is unsupported!'
+	exit
 fi
 
 # Main-script
 ## Link dotfiles
 if [ -f "/etc/arch-release" ]; then
-    echo 'Stowing arch dirs'
-    for PACKAGE in dunst i3 mpd picom polybar rofi
-    do
-        stow -R -v -d config -t $HOME $PACKAGE
-    done
+	echo 'Stowing arch dirs'
+	for PACKAGE in dunst i3 mpd picom polybar rofi; do
+		stow -R -v -d config -t $HOME $PACKAGE
+	done
+fi
+
+if [[ $OSTYPE == 'darwin'* ]]; then
+	echo 'Stowing macos dirs'
+	for PACKAGE in skhd yabai; do
+		stow -R -v -d config -t $HOME $PACKAGE
+	done
 fi
 
 echo 'Stowing common dirs'
-for PACKAGE in git nvim ranger rtx tmux wezterm zsh
-do
-    stow -R -v -d config -t $HOME $PACKAGE
+for PACKAGE in git nvim ranger rtx tmux wezterm zsh zellij; do
+	stow -R -v -d config -t $HOME $PACKAGE
 done
 
 # Post
@@ -45,13 +50,21 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all
 
 ## tmux
-git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+if [ -f $HOME/.tmux/plugins/tpm ]; then
+	echo "installing missing tmux plugin manager [tpm]"
+	git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+fi
 
 ## Install all standard environments
-rtx install --all
+rtx install
 
 ## wallpapers
 cp -r ./wallpapers/* $HOME/Pictures/wallpapers
 
 ## scripts
 sudo cp -r ./scripts/* /usr/local/bin/
+
+## Re-source .zshrc
+source $HOME/.zshrc
+
+echo "Install completed successfully"

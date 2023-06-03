@@ -31,9 +31,9 @@ brew 'shellcheck' # ??
 brew 'yamllint'   # ??
 
 # applications
-cask 'wezterm'          # rust based gpu accelerated terminal
-cask 'rectangle'        # macos window management tools
-cask 'scroll-reverser'  # mouse management tools
-cask 'cyberduck'        # ?
+#cask 'wezterm'          # rust based gpu accelerated terminal
+#cask 'rectangle'        # macos window management tools
+#cask 'scroll-reverser'  # mouse management tools
+#cask 'cyberduck'        # ?
 
 # environments - using rtx (asdf clone) instead

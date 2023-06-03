@@ -67,3 +67,5 @@ function tmux-cwd {
     tmux command-prompt -I $PWD -P "New session dir:" "attach -c %1"
 }
 
+# Azure CLI autocompletions
+source  /opt/homebrew/etc/bash_completion.d/az
