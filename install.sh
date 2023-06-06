@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 # Pre
 ## brew or pacman install
 if [[ $OSTYPE == 'darwin'* ]]; then

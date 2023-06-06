@@ -69,3 +69,6 @@ function tmux-cwd {
 
 # Azure CLI autocompletions
 source  /opt/homebrew/etc/bash_completion.d/az
+
+# Zellij 
+eval "$(zellij setup --generate-auto-start zsh)"

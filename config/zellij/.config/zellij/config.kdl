@@ -181,12 +181,12 @@ plugins {
 }
 
 // The folder in which Zellij will look for layouts
-layout_dir "~/.config/zellij/layouts/"
-default_layout "compact"
+// layout_dir "~/.config/zellij/layouts/"
+// default_layout "compact"
 
 // The folder in which Zellij will look for themes
-theme_dir "~/.config/zellij/themes/"
-theme "dracula"
+// theme_dir "~/.config/zellij/themes/"
+theme "catppuccin-macchiato"
 
 
 // Choose what to do when zellij receives SIGTERM, SIGINT, SIGQUIT or SIGHUP
