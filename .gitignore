@@ -1,0 +1,4 @@
+git/*
+tmux/.tmux/plugins/
+.Brewfile.lock.json
+
