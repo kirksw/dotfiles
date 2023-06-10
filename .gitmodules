@@ -4,6 +4,6 @@
 [submodule "config-nix/awesome/.config/awesome/modules/rubato"]
 	path = config-nix/awesome/.config/awesome/modules/rubato
 	url = https://github.com/andOrlando/rubato.git
-[submodule "config/dotfiles_personal"]
-	path = config/dotfiles_personal
-	url = git@github.com:kirksw/dotfiles_personal.git
+[submodule "private"]
+	path = private
+	url = git@github.com:kirksw/dotfiles-private.git

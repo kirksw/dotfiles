@@ -1,5 +1,9 @@
 #!/bin/zsh
 # Pre
+echo '#####################################################'
+echo '## Installing pre-requisites                       ##'
+echo '#####################################################'
+
 ## brew or pacman install
 if [[ $OSTYPE == 'darwin'* ]]; then
 	echo 'Installing dependencies for macOS'
@@ -8,43 +12,69 @@ elif [ -f "/etc/arch-release" ]; then
 	echo 'Installing dependencies for Arch'
 	sudo pacman -Syyu
 	# base packages
-	sudo pacman -S acpi alsa-utils base-devel curl git pipewire pipewire-alsa xorg xorg-xinit xclip rofi scrot slop wezterm zsh tmux neovim picom polybar dunst i3-gaps zathura zathura-pdf-mupdf ranger ripgrep bat tree ncdu iftop htop ctags lesspipe pipx fzf
+	sudo pacman -S acpi alsa-utils base-devel curl git pipewire pipewire-alsa xorg xorg-xinit xclip rofi scrot slop wezterm zsh tmux neovim picom polybar dunst i3-gaps zathura zathura-pdf-mupdf ranger ripgrep bat tree ncdu iftop htop ctags lesspipe pipx fzf lazygit zellij
 else
-	echo 'Sorry but your current OS is unsupported!'
+  echo 'Sorry but your current OS is unsupported! (use macos or arch)'
 	exit
 fi
 
 # Main-script
+echo '#####################################################'
+echo '## Stowing Config and Resource Files               ##'
+echo '#####################################################'
+
+## Remove existing stowed directories
+for EXISTING in $(find $HOME/.config -maxdepth 1 -type l); do
+  echo "Removing existing stow file/directory [$EXISTING]"
+  rm $EXISTING
+done
+
 ## Link dotfiles
 if [ -f "/etc/arch-release" ]; then
 	echo 'Stowing arch configs'
-	for PACKAGE in awesome i3 dunst ranger mpd picom polybar rofi; do
-		stow -R -v -d config-nix -t $HOME $PACKAGE
+  pushd config-nix
+  for PACKAGE in $(ls -d */); do
+		stow -S --no-folding -t $HOME $PACKAGE
 	done
+  popd
 
-	echo 'Stowing arch resources'
-	for PACKAGE in fonts icons scripts themes wallpapers; do
-		stow -R -v -d resources -t $HOME $PACKAGE
+	echo 'Stowing *nix resources'
+  pushd resources
+  for PACKAGE in $(ls -d */); do
+		stow -S --no-folding -t $HOME $PACKAGE
 	done
-
-	# Todo: maybe think of better way to handle
-	git clone https://github.com/BlingCorp/bling.git ~/.config/awesome/modules/bling
-	git clone https://github.com/andOrlando/rubato.git ~/.config/awesome/modules/rubato
+  popd
 fi
 
 if [[ $OSTYPE == 'darwin'* ]]; then
 	echo 'Stowing macos configs'
-	for PACKAGE in skhd yabai; do
-		stow -R -v -d config-mac -t $HOME $PACKAGE
+  pushd config-mac
+  for PACKAGE in $(ls -d */); do
+		stow -S --no-folding -t $HOME $PACKAGE
 	done
+  popd
 fi
 
 echo 'Stowing common configs'
-for PACKAGE in git nvim ranger rtx tmux wezterm zsh zellij; do
-	stow -R -v -d config -t $HOME $PACKAGE
+  pushd config
+  for PACKAGE in $(ls -d */); do
+    stow -S --no-folding -t $HOME $PACKAGE
+  done
+  popd
+
+echo 'Stowing private configs/resources'
+pushd private
+for PACKAGE in $(ls -d */); do
+  echo "stowing private package [$PACKAGE]"
+	stow -S --no-folding -t $HOME $PACKAGE 
 done
+popd
 
 # Post
+echo '#####################################################' 
+echo '## Setting up tooling...                           ##'
+echo '#####################################################'
+
 ## oh-my-zsh
 curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o /tmp/omz-install.sh && chmod +x /tmp/omz-install.sh && /tmp/omz-install.sh
 
@@ -68,12 +98,9 @@ fi
 ## Install all standard environments
 rtx install
 
-## wallpapers
-cp -r ./resources/wallpapers/* $HOME/Pictures/wallpapers
-
-## scripts
-sudo cp -r ./resources/scripts/* /usr/local/bin/
-
 ## Finished
-echo "Installation completed"
+echo '#####################################################' 
+echo '## Installation completed...                       ##'
+echo '#####################################################'
+
 echo "Please ensure to run source ~/.zshrc or open a new terminal"
