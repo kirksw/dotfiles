@@ -12,7 +12,7 @@ elif [ -f "/etc/arch-release" ]; then
 	echo 'Installing dependencies for Arch'
 	sudo pacman -Syyu
 	# base packages
-	sudo pacman -S acpi alsa-utils base-devel curl git pipewire pipewire-alsa xorg xorg-xinit xclip rofi scrot slop wezterm zsh tmux neovim picom polybar dunst i3-gaps zathura zathura-pdf-mupdf ranger ripgrep bat tree ncdu iftop htop ctags lesspipe pipx fzf lazygit zellij
+	sudo pacman -S acpi alsa-utils base-devel curl git pipewire pipewire-alsa xorg xorg-xinit xclip rofi scrot slop wezterm zsh tmux neovim picom polybar dunst i3-gaps zathura zathura-pdf-mupdf ranger ripgrep bat tree ncdu iftop htop ctags lesspipe pipx fzf lazygit zoxide zellij
 else
   echo 'Sorry but your current OS is unsupported! (use macos or arch)'
 	exit

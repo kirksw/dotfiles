@@ -22,18 +22,13 @@ brew 'tree'     # recursively list contents of a directory in tree like structur
 brew 'navi'     # terminal cheatsheets
 brew 'tmux'     # terminal multiplexer
 brew 'neovim'   # terminal text editor
-brew 'pipx'     # ??
-brew 'git'      # ??
-brew 'zsh'      # ??
-brew 'lazygit'  # ??
-## maybe remove these below
-brew 'shellcheck' # ??
-brew 'yamllint'   # ??
+brew 'pipx'     # cli for installing python tools in their own venvs
+brew 'git'      # version control cli
+brew 'zsh'      # newer shell
+brew 'lazygit'  # terminal git client
 
 # applications
 #cask 'wezterm'          # rust based gpu accelerated terminal
 #cask 'rectangle'        # macos window management tools
 #cask 'scroll-reverser'  # mouse management tools
-#cask 'cyberduck'        # ?
-
-# environments - using rtx (asdf clone) instead
+#cask 'cyberduck'        # storage viewer / etc
