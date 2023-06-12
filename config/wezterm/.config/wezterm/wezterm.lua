@@ -17,12 +17,16 @@ return {
 
 	launch_menu = {},
 	hide_tab_bar_if_only_one_tab = true,
+
 	-- Note: use "xxd -psd" to find hex codes for keys
 	keys = {
 		{
-			key = "j",
-			mods = "CMD",
-			action = action.SendString("\x01\x54"),
+			key = "t",
+			mods = "SHIFT|SUPER",
+			action = action.Multiple({
+				action.SendKey({ key = "a", mods = "CTRL" }),
+				action.SendKey({ key = "T" }),
+			}),
 		},
 	},
 }
