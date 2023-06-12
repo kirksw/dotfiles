@@ -72,3 +72,16 @@ function tmux-cwd {
 
 # Zellij autostart on terminal (disabled as tmux seems better still)
 # eval "$(zellij setup --generate-auto-start zsh)"
+
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
+    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+fi
+
+[ -f /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Created by `pipx` on 2023-03-01 08:29:34
+export PATH="$PATH:/Users/dkKirSwe/.local/bin"
+
