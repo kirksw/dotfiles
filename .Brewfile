@@ -22,6 +22,7 @@ brew 'tree'     # recursively list contents of a directory in tree like structur
 brew 'navi'     # terminal cheatsheets
 brew 'tmux'     # terminal multiplexer
 brew 'neovim'   # terminal text editor
+brew 'zoxide'   # better cd
 brew 'pipx'     # ??
 brew 'git'      # ??
 brew 'zsh'      # ??

@@ -71,4 +71,7 @@ function tmux-cwd {
 source  /opt/homebrew/etc/bash_completion.d/az
 
 # Zellij 
-eval "$(zellij setup --generate-auto-start zsh)"
+#eval "$(zellij setup --generate-auto-start zsh)"
+
+# Zoxide
+eval "$(zoxide init zsh)"
