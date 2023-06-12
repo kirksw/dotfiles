@@ -4,7 +4,7 @@ export DOTFILE=$HOME/.dotfiles
 
 # aliases
 alias vim=nvim
-alias python=python3
+alias lv=nvim-lazy
 
 # zellij
 function zr () { zellij run --name "$*" -- zsh -ic "$*";}

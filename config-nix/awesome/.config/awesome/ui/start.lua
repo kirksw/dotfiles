@@ -227,3 +227,7 @@ F.start.toggle = function()
     start_show()
   end
 end
+
+-- set background on launch
+awful.spawn.with_shell "feh --bg-scale ~/Pictures/wallpapers/background.png"
+awful.spawn.with_shell "setxkbmap -layout 'us,dk'"
