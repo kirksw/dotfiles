@@ -36,7 +36,7 @@ awful.keyboard.append_global_keybindings {
 
   -- Frequently Used
   awful.key({ modkey }, "b", function()
-    awful.spawn "google-chrome-stable"
+    awful.spawn "chromium"
   end),
   awful.key({ modkey }, "e", function()
     awful.spawn "nvim"

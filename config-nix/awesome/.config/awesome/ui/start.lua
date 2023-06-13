@@ -20,7 +20,7 @@ local app_factory = function(icon, exec)
   }
 end
 
-local app_browser = app_factory("browser", "google-chrome-stable")
+local app_browser = app_factory("browser", "chromium")
 local app_terminal = app_factory("term", "wezterm")
 local app_neovim = app_factory("nvim", "nvim")
 local app_zathura = app_factory("zathura", "zathura")
@@ -122,12 +122,12 @@ local calendar = wibox.widget {
   },
 }
 
-local site_discord = app_factory("discord", "google-chrome-stable https://discord.com")
-local site_reddit = app_factory("reddit", "google-chrome-stable https://reddit.com")
-local site_github = app_factory("github", "google-chrome-stable https://github.com")
-local site_mail = app_factory("outlook", "google-chrome-stable https://outlook.com")
-local site_youtube = app_factory("youtube", "google-chrome-stable https://youtube.com")
-local site_nixpkgs = app_factory("nixos", "google-chrome-stable https://search.nixos.org/packages")
+local site_discord = app_factory("discord", "chromium https://discord.com")
+local site_reddit = app_factory("reddit", "chromium https://reddit.com")
+local site_github = app_factory("github", "chromium https://github.com")
+local site_mail = app_factory("outlook", "chromium https://outlook.com")
+local site_youtube = app_factory("youtube", "chromium https://youtube.com")
+local site_nixpkgs = app_factory("nixos", "chromium https://search.nixos.org/packages")
 
 local sites = wibox.widget {
   layout = wibox.layout.grid,

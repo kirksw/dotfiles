@@ -1,7 +1,7 @@
 C = {}
 
 C.terminal = "wezterm"
-C.browser = "google-chrome-stable"
+C.browser = "chromium"
 C.editor = "nvim"
 C.filebrowser = "thunar"
 C.modkey = "Mod4"
