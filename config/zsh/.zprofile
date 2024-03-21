@@ -1,1 +1,1 @@
-eval `keychain --eval id_rsa`
+[ -x keychain ] && eval `keychain --eval id_rsa`

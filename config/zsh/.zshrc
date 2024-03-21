@@ -55,9 +55,6 @@ export PATH="$HOME/.local/bin:$PATH"
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # fzf
 
-# done this way to stop it re-adding
-eval "$($HOME/.local/share/rtx/bin/rtx activate zsh)"
-
 # Created by `pipx` on 2023-03-01 08:29:34
 export PATH="$PATH:/Users/dkKirSwe/.local/bin"
 
@@ -79,11 +76,87 @@ function tmux-cwd {
 # Created by `pipx` on 2023-03-01 08:29:34
 export PATH="$PATH:/Users/dkKirSwe/.local/bin"
 
-# zoxide
-eval $(zoxide init zsh)
 
 # ~/.tmux/plugins
 export PATH=$HOME/.tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
 # ~/.config/tmux/plugins
 export PATH=$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
 
+
+
+# JINA_CLI_BEGIN
+
+## autocomplete
+if [[ ! -o interactive ]]; then
+    return
+fi
+
+compctl -K _jina jina
+
+_jina() {
+  local words completions
+  read -cA words
+
+  if [ "${#words}" -eq 2 ]; then
+    completions="$(jina commands)"
+  else
+    completions="$(jina completions ${words[2,-2]})"
+  fi
+
+  reply=(${(ps:
+:)completions})
+}
+
+# session-wise fix
+ulimit -n 4096
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+# JINA_CLI_END
+
+
+# SAML2AWS
+alias saml2aws-sandbox="saml2aws login --profile lego-databricks-academy-sandbox:Admin --force --skip-prompt"
+
+# function create_saml2aws_aliases()
+# {
+#   local config_file="$HOME/.saml2aws"
+# 
+#   # check if config file exists
+#   if [ -f "$config_file" ]; then
+#     while IFS = read -r line; do
+#       # check if line encased in [ ]
+#       if [[ $line == *\]* ]]; then
+#         # extract config name
+#         config_name = $(echo "$line" | sed 's/\[\(.*\)\]/\1/')
+#         # create alias for config
+#         alias saml2aws-$config_name="saml2aws login --profile $config_name --force --skip-prompt"
+#       fi
+#     done < "$config_file"
+#   fi
+# }
+# 
+# create_saml2aws_aliases
+
+export AWS_PROFILE=default
+export AWS_DEFAULT_REGION=eu-west-1
+export AWS_REGION=$AWS_DEFAULT_REGION
+export SAML2AWS_REGION=$AWS_DEFAULT_REGION
+eval "$(saml2aws --completion-script-zsh)"
+
+
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+fpath+=~/.zfunc
+
+# initiate mise
+eval "$(~/.local/bin/mise activate zsh)"
+
+# stuff needed for ruby to work
+export RUBY_YJIT_ENABLE=1
+export RUBY_CONFIGURE_OPTS="--with-zlib-dir=$(brew --prefix zlib) --with-openssl-dir=$(brew --prefix openssl@1.1) --with-readline-dir=$(brew --prefix readline) --with-libyaml-dir=$(brew --prefix libyaml) --with-gdbm-dir=$(brew --prefix gdbm)"
+export CFLAGS="-Wno-error=implicit-function-declaration"
+export LDFLAGS="-L$(brew --prefix libyaml)/lib"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# zoxide
+eval $(zoxide init zsh)
